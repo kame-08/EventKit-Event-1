@@ -79,6 +79,20 @@ class EventManager: ObservableObject {
             print(error.localizedDescription)
         }
     }
+    
+    /// イベントの変更
+    func createEvent(event: EKEvent,title: String, startDate: Date, endDate: Date){
+        event.title = title
+        event.startDate = startDate
+        event.endDate = endDate
+        //デフォルトカレンダーに追加
+        event.calendar = store.defaultCalendarForNewEvents
+        do {
+            try store.save(event, span: .thisEvent, commit: true)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 }
 
 

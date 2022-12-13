@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import EventKit
 
 struct CreateEventView: View {
-    @ObservedObject var eventManager = EventManager()
+    @EnvironmentObject var eventManager: EventManager
     // ContentViewのsheetのフラグ
     @Environment(\.dismiss) var dismiss
+    // 変更するイベント(nilの場合は新規追加)
+    @Binding var event: EKEvent?
     // eventのタイトル
     @State var title = ""
     // eventの開始日時
@@ -28,8 +31,12 @@ struct CreateEventView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("追加") {
+                    Button(event == nil ? "追加" : "変更") {
+                        if let event {
+                            eventManager.createEvent(event: event, title: title, startDate: start, endDate: end)
+                        } else{
                             eventManager.createEvent(title: title, startDate: start, endDate: end)
+                        }
                         // sheetを閉じる
                         dismiss()
                     }
@@ -43,11 +50,19 @@ struct CreateEventView: View {
                 }
             }
         }
+        .task {
+            if let event {
+                // eventが渡されたら値をセットする
+                self.title = event.title
+                self.start = event.startDate
+                self.end = event.endDate
+            }
+        }
     }
 }
 
 struct CreateEventView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateEventView()
+        CreateEventView(event: .constant(nil))
     }
 }
