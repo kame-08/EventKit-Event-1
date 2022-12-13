@@ -33,7 +33,7 @@ struct CreateEventView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(event == nil ? "追加" : "変更") {
                         if let event {
-                            eventManager.createEvent(event: event, title: title, startDate: start, endDate: end)
+                            eventManager.modifyEvent(event: event, title: title, startDate: start, endDate: end)
                         } else{
                             eventManager.createEvent(title: title, startDate: start, endDate: end)
                         }

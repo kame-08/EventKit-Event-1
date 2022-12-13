@@ -50,9 +50,9 @@ class EventManager: ObservableObject {
     @objc func fetchEvent() {
         // 適切なカレンダーを取得
         let calendar = Calendar.current
-        // 開始日コンポーネントの作成
+        // 開始日コンポーネントの作成(指定された日付の0:00:00)
         let start = calendar.startOfDay(for: day)
-        // 終了日コンポーネントの作成
+        // 終了日コンポーネントの作成(指定された日付の23:59:59)
         let end = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: start)
         // イベントストアのインスタンスメソッドから述語を作成
         var predicate: NSPredicate? = nil
@@ -81,7 +81,7 @@ class EventManager: ObservableObject {
     }
     
     /// イベントの変更
-    func createEvent(event: EKEvent,title: String, startDate: Date, endDate: Date){
+    func modifyEvent(event: EKEvent,title: String, startDate: Date, endDate: Date){
         event.title = title
         event.startDate = startDate
         event.endDate = endDate
@@ -104,6 +104,8 @@ class EventManager: ObservableObject {
         }
     }
 }
+
+
 
 
 
