@@ -24,6 +24,13 @@ struct ContentView: View {
                         self.event = event
                         isShowCreateEventView = true
                     }
+                    .contextMenu {
+                        Button(role: .destructive) {
+                            eventManager.deleteEvent(event: event)
+                        } label: {
+                            Label("削除", systemImage: "trash")
+                        }
+                    }
                 }
                 .sheet(isPresented: $isShowCreateEventView) {
                     CreateEventView(event: $event)
