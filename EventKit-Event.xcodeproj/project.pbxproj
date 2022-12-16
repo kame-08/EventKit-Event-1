@@ -12,6 +12,7 @@
 		2AC5BFA52947725D004C976C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AC5BFA42947725D004C976C /* Assets.xcassets */; };
 		2AC5BFA82947725D004C976C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AC5BFA72947725D004C976C /* Preview Assets.xcassets */; };
 		2AC5BFAF294772A2004C976C /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC5BFAE294772A2004C976C /* EventManager.swift */; };
+		2AC5BFB1294BF700004C976C /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC5BFB0294BF700004C976C /* CreateEventView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		2AC5BFA42947725D004C976C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AC5BFA72947725D004C976C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2AC5BFAE294772A2004C976C /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		2AC5BFB0294BF700004C976C /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				2AC5BFA02947725C004C976C /* EventKit_EventApp.swift */,
 				2AC5BFA22947725C004C976C /* ContentView.swift */,
 				2AC5BFAE294772A2004C976C /* EventManager.swift */,
+				2AC5BFB0294BF700004C976C /* CreateEventView.swift */,
 				2AC5BFA42947725D004C976C /* Assets.xcassets */,
 				2AC5BFA62947725D004C976C /* Preview Content */,
 			);
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AC5BFAF294772A2004C976C /* EventManager.swift in Sources */,
+				2AC5BFB1294BF700004C976C /* CreateEventView.swift in Sources */,
 				2AC5BFA32947725C004C976C /* ContentView.swift in Sources */,
 				2AC5BFA12947725C004C976C /* EventKit_EventApp.swift in Sources */,
 			);

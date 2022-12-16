@@ -64,6 +64,22 @@ class EventManager: ObservableObject {
             events = store.events(matching: predicate)
         }
     }
+    
+    /// イベントの追加
+    func createEvent(title: String, startDate: Date, endDate: Date){
+        let event = EKEvent(eventStore: store)
+        event.title = title
+        event.startDate = startDate
+        event.endDate = endDate
+        //デフォルトカレンダー
+        event.calendar = store.defaultCalendarForNewEvents
+        do {
+            try store.save(event, span: .thisEvent, commit: true)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 }
+
 
 
