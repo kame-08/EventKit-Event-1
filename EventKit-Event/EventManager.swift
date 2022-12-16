@@ -12,6 +12,10 @@ class EventManager: ObservableObject {
     var store = EKEventStore()
     // イベントへの認証ステータスのメッセージ
     @Published var statusMessage = ""
+    // 取得されたevents
+    @Published var events: [EKEvent]? = nil
+    // 起動時の日時
+    @Published var day = Date()
 
     init() {
         Task {
@@ -33,9 +37,31 @@ class EventManager: ObservableObject {
                 statusMessage = "カレンダーへのアクセスが\n明示的に拒否されています。"
             case .authorized:
                 statusMessage = "カレンダーへのアクセスが\n許可されています。"
+                fetchEvent()
+                // カレンダーデータベースの変更を検出したらfetchEvent()を実行する
+                NotificationCenter.default.addObserver(self, selector: #selector(fetchEvent), name: .EKEventStoreChanged, object: store)
             @unknown default:
                 statusMessage = "@unknown default"
             }
+        }
+    }
+
+    /// 指定した日付内のイベントを取得
+    @objc func fetchEvent() {
+        // 適切なカレンダーを取得
+        let calendar = Calendar.current
+        // 開始日コンポーネントの作成
+        let start = calendar.startOfDay(for: day)
+        // 終了日コンポーネントの作成
+        let end = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: start)
+        // イベントストアのインスタンスメソッドから述語を作成
+        var predicate: NSPredicate? = nil
+        if let end {
+            predicate = store.predicateForEvents(withStart: start, end: end, calendars: nil)
+        }
+        // 述語に一致する全てのイベントを取得
+        if let predicate {
+            events = store.events(matching: predicate)
         }
     }
 }
